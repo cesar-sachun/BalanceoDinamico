@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen antialiased">
+    <%- body %>
+
+    <script src="https://unpkg.com/konva@9.3.5/konva.min.js"></script>
+    <script type="module">
+        import PolarCanvasController from '/js/PolarCanvasController.js';
+        import AppController from '/js/AppController.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar Gráfico 1: Trilateración
+            if (document.getElementById('polar-trilateration')) {
+                window.trilaterationGraph = new PolarCanvasController('polar-trilateration', 'coords-trilateration');
+            }
+
+            // Inicializar Gráfico 2: Vectores
+            if (document.getElementById('polar-vectors')) {
+                window.vectorsGraph = new PolarCanvasController('polar-vectors', 'coords-vectors');
+            }
+        });
+    </script> 
+</body>
+</html>

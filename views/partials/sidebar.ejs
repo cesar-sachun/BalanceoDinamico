@@ -1,0 +1,137 @@
+<!-- Sidebar Toggle Button -->
+<button id="sidebar-toggle" class="fixed top-4 right-4 z-50 p-3 bg-white hover:bg-gray-100 text-gray-700 rounded-lg shadow-lg border border-gray-200 transition-all duration-300 group">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+</button>
+
+<!-- Sidebar Container -->
+<div id="sidebar" class="fixed inset-y-0 right-0 w-80 bg-white border-l border-gray-200 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+    <div class="h-full flex flex-col">
+        <!-- Header -->
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-white">
+            <h2 class="text-xl font-bold text-gray-800 tracking-tight">Parámetros</h2>
+            <button id="sidebar-close" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            
+            <!-- Global Parameters -->
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-2.5 h-2.5 rounded-sm bg-blue-500 mr-2"></div>
+                            <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Amplitud Inicial</label>
+                        </div>
+                        <input type="number" id="init-amp" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="0.00" value="7">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Masa de Prueba (g)</label>
+                        <input type="number" id="test-mass" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="0.00" value="10">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trials Grid -->
+            <div class="grid grid-cols-1 gap-4">
+                
+                <!-- Ensayo 01 -->
+                <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+                    <div class="flex items-center mb-2">
+                        <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                        <h3 class="text-xs font-bold text-gray-700 uppercase">Ensayo 01</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Amplitud</label>
+                            <input type="number" id="t1-amp" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-green-500 transition-colors" placeholder="0.00" value="4">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Fase (°)</label>
+                            <input type="number" id="t1-phase" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-green-500 transition-colors" placeholder="0" value="0" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ensayo 02 -->
+                <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+                    <div class="flex items-center mb-2">
+                        <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                        <h3 class="text-xs font-bold text-gray-700 uppercase">Ensayo 02</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Amplitud</label>
+                            <input type="number" id="t2-amp" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-purple-500 transition-colors" placeholder="0.00" value="3.5">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Fase (°)</label>
+                            <input type="number" id="t2-phase" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-purple-500 transition-colors" placeholder="120" value="120">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ensayo 03 -->
+                <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+                    <div class="flex items-center mb-2">
+                        <div class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
+                        <h3 class="text-xs font-bold text-gray-700 uppercase">Ensayo 03</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Amplitud</label>
+                            <input type="number" id="t3-amp" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-yellow-500 transition-colors" placeholder="0.00" value="5">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 font-bold mb-0.5">Fase (°)</label>
+                            <input type="number" id="t3-phase" class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm text-gray-800 focus:outline-none focus:border-yellow-500 transition-colors" placeholder="240" value="240">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Action Button -->
+            <button id="btn-draw" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/20 transform transition-all hover:scale-[1.02] active:scale-[0.98]">
+                Dibujar
+            </button>
+
+            <!-- Calculation Results -->
+            <div class="grid grid-cols-3 gap-2 mt-4">
+                <div class="bg-gray-50 rounded-lg p-2 text-center border border-gray-200">
+                    <div class="text-[9px] text-gray-400 font-bold uppercase leading-tight mb-1">Magnitud<br>Estimada r*</div>
+                    <div class="text-gray-800 font-bold text-sm" id="res-mag">0.540</div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-2 text-center border border-gray-200">
+                    <div class="text-[9px] text-gray-400 font-bold uppercase leading-tight mb-1">Fase<br>Estimada &theta;*</div>
+                    <div class="text-gray-800 font-bold text-sm" id="res-phase">76.6°</div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-2 text-center border border-gray-200">
+                    <div class="text-[9px] text-gray-400 font-bold uppercase leading-tight mb-1">Error RMS<br>(ajuste)</div>
+                    <div class="text-gray-800 font-bold text-sm" id="res-error">0.00</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple toggle logic inside the partial for simplicity
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const closeBtn = document.getElementById('sidebar-close');
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('translate-x-full');
+    }
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+    closeBtn.addEventListener('click', toggleSidebar);
+</script>
