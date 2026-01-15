@@ -1,5 +1,3 @@
-// /public/js/PolarCanvasController.js
-
 export default class PolarCanvasController {
     constructor(containerId, coordsDisplayId) {
         this.containerId = containerId; // Guardar ID del contenedor
@@ -153,13 +151,7 @@ export default class PolarCanvasController {
             // Vamos a dibujar etiquetas de ángulos en cada círculo principal? No, muy cargado.
             // Dibujemos etiquetas de angulos a un radio fijo "visual" o simplemente al borde.
             // Por simplicidad mantengo la lógica de bordes pero con texto más legible.
-           
-            const textRadius = Math.min(this.stage.width(), this.stage.height()) / 2 - 20; 
-            // Esto mantiene las etiquetas dentro del canvas visible, no infinitamente lejos.
-             // Pero necesitamos convertir ese radio de pantalla a posición. 
-             // Como el grid se mueve (pan), esto es tricky. 
-             // Simplificación: Dibujar lineas largas y ya. Las etiquetas de ángulos a veces molestan si no son dinámicas.
-             // Voy a ponerlas a un radio fijo relativo al "centro" por ahora, o dejarlas como estaban pero sutiles.
+            // Voy a ponerlas a un radio fijo relativo al "centro" por ahora, o dejarlas como estaban pero sutiles.
              
              this.gridLayer.add(new Konva.Text({
                 x: endX * 0.9 + 5,

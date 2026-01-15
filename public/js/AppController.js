@@ -1,5 +1,3 @@
-import BalancingMath from './BalancingMath.js';
-
 export default class AppController {
     constructor() {
         this.bindEvents();
@@ -35,25 +33,39 @@ export default class AppController {
         };
     }
 
-    calculateAndDraw() {
+    async calculateAndDraw() {
         const inputs = this.getInputs();
 
-        // 1. Calculate Solution (Trilateration)
-        const solution = BalancingMath.solveIntersection(inputs.v0, inputs.runs);
-        
-        // 2. Calculate Vectors (Vector Sum)
-        const vectors = BalancingMath.calculateVectors(inputs.runs);
+        try {
+            const response = await fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(inputs)
+            });
 
-        // 3. Update Results UI
-        this.updateResultsUI(solution, vectors);
-        this.updateLegends(inputs, solution, vectors);
+            if (!response.ok) {
+                 throw new Error('Server error');
+            }
 
-        // 4. Draw Graphs
-        if (window.trilaterationGraph) {
-            window.trilaterationGraph.drawTrilateration(inputs.v0, inputs.runs, solution, true);
-        }
-        if (window.vectorsGraph) {
-            window.vectorsGraph.drawVectors(inputs.runs, vectors.resultant, vectors.opposite, true);
+            const data = await response.json();
+            const { solution, vectors } = data;
+
+            // 3. Update Results UI
+            this.updateResultsUI(solution, vectors);
+            this.updateLegends(inputs, solution, vectors);
+
+            // 4. Draw Graphs
+            if (window.trilaterationGraph) {
+                window.trilaterationGraph.drawTrilateration(inputs.v0, inputs.runs, solution, true);
+            }
+            if (window.vectorsGraph) {
+                window.vectorsGraph.drawVectors(inputs.runs, vectors.resultant, vectors.opposite, true);
+            }
+
+        } catch (error) {
+            console.error('Error in calculation:', error);
         }
     }
 
@@ -70,7 +82,7 @@ export default class AppController {
         // Format Values
         const magVal = solution.r.toFixed(3);
         const phaseVal = solution.theta.toFixed(1) + '°';
-        const errorVal = solution.error.toExponential(2);
+        const errorVal = solution.error !== undefined ? solution.error.toExponential(2) : "0.00";
 
         // Update Sidebar
         if (sbMag) sbMag.textContent = magVal;
